@@ -1,9 +1,8 @@
-import { useLayoutEffect } from "react";
 import styles from "./Feedback.module.css";
 
 const Feedback = ({ feedback, totalFeedback, positiveFeedback }) => {
   return (
-    <ul className={styles.wriper}>
+    <ul className={styles.wrapper}>
       {Object.entries(feedback).map((item, idx) => {
         return (
           <li className={styles.text} key={idx}>
