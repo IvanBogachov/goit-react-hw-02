@@ -13,9 +13,8 @@ const DEFAULT_FEEDBACK_DATA = {
 };
 
 const getLSFeedbackData = () => {
-  return localStorage.getItem("feedback-data") !== null
-    ? JSON.parse(localStorage.getItem("feedback-data"))
-    : DEFAULT_FEEDBACK_DATA;
+  const data = localStorage.getItem("feedback-data");
+  return data ? JSON.parse(data) : DEFAULT_FEEDBACK_DATA;
 };
 
 function App() {
@@ -26,7 +25,7 @@ function App() {
   }, [feedback]);
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
+  const positiveFeedback = totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   const resetFeedback = () => {
     setFeedback(DEFAULT_FEEDBACK_DATA);
