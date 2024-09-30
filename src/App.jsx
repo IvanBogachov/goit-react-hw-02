@@ -28,21 +28,21 @@ function App() {
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
 
+  const resetFeedback = () => {
+    setFeedback(DEFAULT_FEEDBACK_DATA);
+  };
+
   const updateFeedback = (feedbackType) => {
-    if (feedbackType === "reset") {
-      setFeedback(DEFAULT_FEEDBACK_DATA);
-    } else {
-      setFeedback({
-        ...feedback,
-        [feedbackType]: feedback[feedbackType] + 1,
-      });
-    }
+    setFeedback({
+      ...feedback,
+      [feedbackType]: feedback[feedbackType] + 1,
+    });
   };
 
   return (
     <>
       <Description />
-      <Options updateFeedback={updateFeedback} isVisible={!!totalFeedback} />
+      <Options updateFeedback={updateFeedback} resetFeedback={resetFeedback} isVisible={!!totalFeedback} />
       {totalFeedback ? (
         <Feedback
           feedback={feedback}

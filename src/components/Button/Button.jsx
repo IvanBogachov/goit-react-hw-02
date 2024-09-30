@@ -1,7 +1,7 @@
 const Button = ({ btnType = "button", handleClick, children }) => {
   return (
     <button
-      onClick={() => handleClick(children.toLowerCase())}
+      onClick={handleClick}
       type={btnType}
       aria-label={`button ${children}`}
     >
